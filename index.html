@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tom Vernier-Fétu | Apprenti Développeur Web & Logiciel</title>
+  <meta name="description" content="Portfolio de Tom Vernier-Fétu — Apprenti développeur web & logiciel (autodidacte) et passionné de systèmes/réseaux à Angers. À la recherche d'une alternance ENI (6 sem. entreprise / 2 sem. école).">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand">
+        <span class="brand-badge">TVF</span>
+        <span class="brand-name">Tom Vernier-Fétu</span>
+      </a>
+
+      <nav class="nav-links" id="nav-menu">
+        <a href="#a-propos">Parcours</a>
+        <a href="#alternance">Alternance</a>
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#contact" class="btn btn-sm btn-primary">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Bouton bascule Thème Clair / Sombre -->
+        <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-container">
+        
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>À la recherche d'une alternance — <strong>Dès que possible</strong> (Angers & agglo)</span>
+        </div>
+
+        <h1 class="hero-title">
+          Apprenti Développeur Web & Logiciel
+          <span class="hero-subtitle-gradient">Profil autodidacte & passionné</span>
+        </h1>
+
+        <p class="hero-description">
+          Issu d'un <strong>Bac Pro CIEL</strong> et en route vers l'<strong>ENI École Informatique</strong>. 
+          J'aime concevoir des solutions concrètes allant du développement applicatif (PHP, C#, Web) 
+          aux systèmes & réseaux (Linux, Bash, DNS).
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <span class="metric-num">6 / 2</span>
+            <span class="metric-label">Semaines entreprise / cours</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Projets concrets & défendables</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">Angers</span>
+            <span class="metric-label">Accessible transports Irigo</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projets" class="btn btn-primary">Explorer mes réalisations ↓</a>
+          <a href="#alternance" class="btn btn-secondary">Fiche Alternance 📋</a>
+          <a href="https://github.com/TomVernierFetu" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Fiche Alternance -->
+    <section class="section section-highlight" id="alternance">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Recrutement</span>
+          <h2 class="section-title">Fiche Synthétique Alternance</h2>
+          <p class="section-desc">L'essentiel pour vos équipes RH et techniques, clair et transparent.</p>
+        </div>
+
+        <div class="alternance-grid">
+          
+          <div class="alt-card">
+            <div class="alt-icon">📅</div>
+            <h3>Disponibilité</h3>
+            <p class="alt-value">Dès que possible</p>
+            <p class="alt-detail">Prêt à intégrer votre équipe pour démarrer sur vos projets.</p>
+          </div>
+
+          <div class="alt-card featured">
+            <div class="alt-icon">⏱️</div>
+            <h3>Rythme ENI</h3>
+            <p class="alt-value">6 sem. entreprise / 2 sem. cours</p>
+            <p class="alt-detail">Idéal pour les entreprises : de longues périodes en immersion pour s'investir sur de vrais sprints.</p>
+          </div>
+
+          <div class="alt-card">
+            <div class="alt-icon">📍</div>
+            <h3>Localisation</h3>
+            <p class="alt-value">Angers & agglomération</p>
+            <p class="alt-detail">Avrillé, Beaucouzé, Trélazé, etc. Desservi par le réseau de transports en commun Irigo.</p>
+          </div>
+
+          <div class="alt-card">
+            <div class="alt-icon">🎯</div>
+            <h3>Postes ciblés</h3>
+            <p class="alt-value">Développement & Réseaux</p>
+            <p class="alt-detail">Développeur junior Web / Logiciel (PHP, C#, SQL) ou Technicien Systèmes & Réseaux.</p>
+          </div>
+
+        </div>
+
+        <div class="alt-banner">
+          <div class="alt-banner-text">
+            <h4>Vous avez une opportunité d'alternance à pourvoir ?</h4>
+            <p>Échangeons de vive voix sur vos besoins techniques et mes projets récents.</p>
+          </div>
+          <a href="#contact" class="btn btn-primary">Prendre contact →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Parcours / À propos -->
+    <section class="section" id="a-propos">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Histoire</span>
+          <h2 class="section-title">Mon Parcours : Le goût du concret</h2>
+          <p class="section-desc">Pas de théorie abstraite : un profil construit par la curiosité et la pratique.</p>
+        </div>
+
+        <div class="timeline-grid">
+          
+          <article class="timeline-card">
+            <div class="timeline-step">1</div>
+            <h3>Le déclic : Bac Pro CIEL</h3>
+            <p class="timeline-period">Cybersécurité, Informatique & Réseaux</p>
+            <p>
+              Après avoir connu un décrochage scolaire au collège faute de sens, l'entrée en <strong>Bac Pro CIEL</strong> 
+              a été le tournant. Mettre les mains dans les machines, monter des câblages, comprendre le fonctionnement 
+              des routeurs et du matériel m'a immédiatement redonné le goût d'apprendre.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-step">2</div>
+            <h3>L'autodidaxie & premiers projets</h3>
+            <p class="timeline-period">Serveurs de jeu & Chef-d'œuvre Web</p>
+            <p>
+              En côtoyant un développeur de serveurs Minecraft Bedrock (PocketMine-MP), j'ai commencé à concevoir 
+              des interfaces (UI) et à comprendre la logique du code. Pour mon <strong>chef-d'œuvre de Bac Pro</strong>, 
+              j'ai développé mon premier site web complet en HTML5/CSS3 en apprenant par moi-même.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-step">3</div>
+            <h3>Objectif ENI : L'immersion professionnelle</h3>
+            <p class="timeline-period">Cap vers l'entreprise</p>
+            <p>
+              Pour poursuivre ma montée en compétences, j'ai choisi l'<strong>ENI École Informatique</strong>. 
+              Son modèle axé sur la pratique et son rythme privilégié (6 semaines consécutives en entreprise) 
+              correspondent parfaitement à ma façon d'apprendre : par le projet et le terrain.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Projets concrets -->
+    <section class="section section-highlight" id="projets">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Réalisations</span>
+          <h2 class="section-title">Projets Développés & Code Source</h2>
+          <p class="section-desc">Du code réel, fonctionnel et disponible publiquement sur mon profil GitHub.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Projet 1 : Cavaliers de l'Apocalypse (PHP / MySQL) -->
+          <article class="project-card">
+            <div class="project-header">
+              <span class="project-category">Web Dynamique & BDD</span>
+              <span class="project-badge">PHP / PDO</span>
+            </div>
+            <h3 class="project-title">Cavaliers de l'Apocalypse</h3>
+            <p class="project-desc">
+              Plateforme web complète pour un club d'échecs associatif. Gestion des membres avec opérations CRUD complètes, 
+              calendrier d'événements et sécurisation systématique des requêtes via <strong>PDO et requêtes préparées</strong> 
+              pour bloquer les injections SQL.
+            </p>
+            <div class="project-tags">
+              <span>PHP 8</span>
+              <span>MySQL</span>
+              <span>PDO</span>
+              <span>CRUD</span>
+              <span>Sécurité</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/TomVernierFetu/cavaliers-apocalypse-web" target="_blank" rel="noopener noreferrer" class="link-arrow">
+                Voir le dépôt GitHub <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 2 : Retro Arcade Console (C#) -->
+          <article class="project-card">
+            <div class="project-header">
+              <span class="project-category">Développement Applicatif</span>
+              <span class="project-badge">C# / .NET</span>
+            </div>
+            <h3 class="project-title">Retro Arcade C# Console</h3>
+            <p class="project-desc">
+              Borne de rétrogaming en mode console intégrant 5 jeux complets (Morpion IA/2 joueurs, Jeu des Allumettes de Nim, 
+              Juste Prix, Pendu et Machine à sous). Gestion stricte des boucles d'état, validation des saisies utilisateur et scoring.
+            </p>
+            <div class="project-tags">
+              <span>C#</span>
+              <span>.NET</span>
+              <span>Algorithmique</span>
+              <span>Console</span>
+              <span>State Loop</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/TomVernierFetu/retro-arcade-csharp" target="_blank" rel="noopener noreferrer" class="link-arrow">
+                Voir le dépôt GitHub <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 3 : Angers Actu Blog (HTML / CSS) -->
+          <article class="project-card">
+            <div class="project-header">
+              <span class="project-category">Front-End Responsive</span>
+              <span class="project-badge">HTML5 / CSS3</span>
+            </div>
+            <h3 class="project-title">Angers Actu — Blog Culturel</h3>
+            <p class="project-desc">
+              Site web d'information locale pensé pour les événements de la région d'Angers. Structure HTML5 sémantique 
+              (header, main, section, aside), mise en page Flexbox adaptative (mobile, tablette, desktop) et feuille 
+              de style dédiée à l'impression papier (<code>@media print</code>).
+            </p>
+            <div class="project-tags">
+              <span>HTML5</span>
+              <span>CSS3 Flexbox</span>
+              <span>Responsive Design</span>
+              <span>Media Queries</span>
+              <span>Print CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/TomVernierFetu/angers-actu-blog" target="_blank" rel="noopener noreferrer" class="link-arrow">
+                Voir le dépôt GitHub <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 4 : Base Médiathèque SQL -->
+          <article class="project-card">
+            <div class="project-header">
+              <span class="project-category">Bases de Données</span>
+              <span class="project-badge">SQL Standard</span>
+            </div>
+            <h3 class="project-title">Médiathèque Database & Requêtes</h3>
+            <p class="project-desc">
+              Modélisation relationnelle complète (abonnés, emprunts, ouvrages, auteurs) et batterie de 60+ requêtes SQL d'analyse : 
+              jointures multi-tables (INNER / LEFT / RIGHT JOIN), calculs d'agrégation (COUNT, AVG, SUM), clauses GROUP BY et HAVING.
+            </p>
+            <div class="project-tags">
+              <span>SQL</span>
+              <span>MySQL / MariaDB</span>
+              <span>Jointures</span>
+              <span>Agrégation</span>
+              <span>Modélisation</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/TomVernierFetu/mediatheque-database-sql" target="_blank" rel="noopener noreferrer" class="link-arrow">
+                Voir le dépôt GitHub <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 5 : Automation Scripts (Bash / Batch) -->
+          <article class="project-card">
+            <div class="project-header">
+              <span class="project-category">Systèmes & Administration</span>
+              <span class="project-badge">Bash & Batch</span>
+            </div>
+            <h3 class="project-title">Automation & Backup Suite</h3>
+            <p class="project-desc">
+              Suite de scripts d'administration système : sauvegardes automatisées avec horodatage dynamique, compression 
+              d'archives 7-Zip, montage sécurisé de lecteurs réseau (<code>net use</code>), téléversement automatisé par FTP 
+              et script Bash d'audit système sous Linux Debian.
+            </p>
+            <div class="project-tags">
+              <span>Bash Linux</span>
+              <span>Windows Batch</span>
+              <span>Sauvegardes</span>
+              <span>7-Zip</span>
+              <span>FTP & Réseau</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/TomVernierFetu/automation-backup-scripts" target="_blank" rel="noopener noreferrer" class="link-arrow">
+                Voir le dépôt GitHub <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Projet 6 : Home-lab Réseau & DNS (Pi-hole) -->
+          <article class="project-card lab-card">
+            <div class="project-header">
+              <span class="project-category">Home-Lab Personnel</span>
+              <span class="project-badge badge-lab">Expérimentation</span>
+            </div>
+            <h3 class="project-title">Serveur DNS & Filtrage Pi-hole</h3>
+            <p class="project-desc">
+              Déploiement et configuration d'un serveur DNS local sur machine dédiée avec Pi-hole. Analyse des flux 
+              réseau domestiques, filtrage des requêtes DNS, blocage des traceurs et compréhension concrète des protocoles 
+              réseau (DHCP, DNS, baux d'adresses IP statiques).
+            </p>
+            <div class="project-tags">
+              <span>Réseaux</span>
+              <span>DNS</span>
+              <span>Pi-hole</span>
+              <span>Linux</span>
+              <span>Home-Lab</span>
+            </div>
+            <div class="project-links">
+              <span class="link-badge">🧪 Projet d'apprentissage pratique</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Compétences pratiques -->
+    <section class="section" id="competences">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Savoir-Faire</span>
+          <h2 class="section-title">Compétences Techniques</h2>
+          <p class="section-desc">Ce que je pratique et applique concrètement dans mes développements.</p>
+        </div>
+
+        <div class="skills-grid">
+          
+          <div class="skill-group">
+            <div class="skill-icon">💻</div>
+            <h3>Développement Back-End & Logiciel</h3>
+            <ul>
+              <li><strong>C# & .NET :</strong> Applications console, boucles, conditions, tableaux, logique algorithmique.</li>
+              <li><strong>PHP 8 :</strong> Programmation modulaire, formulaires POST/GET, sessions.</li>
+              <li><strong>Sécurité PDO :</strong> Requêtes préparées systématiques, protection contre les injections SQL.</li>
+              <li><strong>SQL Relationnel :</strong> Conception de schémas, clés étrangères, jointures et agrégations.</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-icon">🌐</div>
+            <h3>Développement Web Front-End</h3>
+            <ul>
+              <li><strong>HTML5 Sémantique :</strong> Structure propre, balisage accessible et bien ordonné.</li>
+              <li><strong>CSS3 Moderne :</strong> Flexbox, variables CSS, Media Queries, design adaptatif (responsive).</li>
+              <li><strong>Impression CSS :</strong> Règles dédiées <code>@media print</code> pour édition propre.</li>
+              <li><strong>JavaScript :</strong> Intégrations basiques, manipulation du DOM (ex : toggle de thème, copie presse-papier).</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-icon">⚙️</div>
+            <h3>Systèmes, Réseaux & Outils</h3>
+            <ul>
+              <li><strong>Systèmes :</strong> Environnements Linux (Debian) et Windows.</li>
+              <li><strong>Scripts :</strong> Automatisation en Bash (shell Linux) et Batch (Windows .bat).</li>
+              <li><strong>Réseaux :</strong> Adressage IP, configuration DNS locale (Pi-hole), notions DHCP.</li>
+              <li><strong>Gestion de version :</strong> Git en ligne de commande, commits propres, GitHub.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="section section-highlight" id="contact">
+      <div class="container contact-container">
+        
+        <div class="section-header">
+          <span class="section-tag">Échangeons</span>
+          <h2 class="section-title">Me Contacter</h2>
+          <p class="section-desc">Je suis disponible pour toute opportunité d'alternance sur Angers ou échange technique.</p>
+        </div>
+
+        <div class="contact-card">
+          
+          <div class="contact-info-block">
+            <div class="contact-avatar">TVF</div>
+            <h3>Tom Vernier-Fétu</h3>
+            <p class="contact-role">Apprenti Développeur Web & Logiciel</p>
+            <p class="contact-loc">📍 Angers (49) & agglomération</p>
+          </div>
+
+          <div class="contact-methods">
+            
+            <!-- Email avec bouton de copie -->
+            <div class="contact-row">
+              <div class="contact-icon-box">✉️</div>
+              <div class="contact-detail">
+                <span class="contact-label">Email professionnel</span>
+                <span class="contact-val" id="email-text">tomvernierfetu@gmail.com</span>
+              </div>
+              <div class="contact-action-group">
+                <a href="mailto:tomvernierfetu@gmail.com" class="btn btn-sm btn-secondary">Envoyer un mail</a>
+                <button id="copy-email-btn" class="btn btn-sm btn-outline" aria-label="Copier l'adresse email">
+                  <span id="copy-label">Copier</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="contact-row">
+              <div class="contact-icon-box">💼</div>
+              <div class="contact-detail">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-val">in/tomvernierfetu/</span>
+              </div>
+              <div class="contact-action-group">
+                <a href="https://www.linkedin.com/in/tomvernierfetu/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  Voir mon profil ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-row">
+              <div class="contact-icon-box">🐙</div>
+              <div class="contact-detail">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-val">github.com/TomVernierFetu</span>
+              </div>
+              <div class="contact-action-group">
+                <a href="https://github.com/TomVernierFetu" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">
+                  Consulter mes dépôts ↗
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast notification pour la copie d'email -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive">
+    ✓ Adresse email copiée dans le presse-papier !
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>© 2026 <strong>Tom Vernier-Fétu</strong> — Apprenti Développeur</p>
+      <p class="footer-sub">Site conçu à la main en HTML5 / CSS3 / JS pur — Hébergé sur GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
