@@ -3,44 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tom Vernier-Fétu — Apprenti Développeur</title>
-  <meta name="description" content="Portfolio de Tom Vernier-Fétu. Apprenti développeur web & logiciel (autodidacte) à Angers. En recherche d'alternance à l'ENI (rythme 6 sem. entreprise / 2 sem. cours).">
-  
-  <!-- Typographies éditoriales & techniques : Inter + JetBrains Mono + Newsreader -->
+  <title>Tom Vernier-Fétu — Développeur Web & Logiciel (Alternance ENI)</title>
+  <meta name="description" content="Portfolio de Tom Vernier-Fétu. Futur étudiant ENI École Informatique à Angers en recherche d'alternance (6 sem. entreprise / 2 sem. cours). Développement web & logiciel, systèmes et réseaux.">
+  <meta property="og:title" content="Tom Vernier-Fétu — Développeur Web & Logiciel">
+  <meta property="og:description" content="Portfolio et CV de Tom Vernier-Fétu. Recherche d'alternance ENI à Angers (PHP, C#, SQL, Linux, Zabbix).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tomvernierfetu.github.io/">
+
+  <!-- Typographies : Inter, JetBrains Mono et Newsreader -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
 </head>
 <body>
 
   <div class="layout-wrapper">
+
+    <!-- Navigation rapide -->
+    <nav class="top-nav" aria-label="Navigation principale">
+      <div class="nav-links">
+        <a href="#a-propos">À propos</a>
+        <a href="#alternance">Alternance</a>
+        <a href="#projets">Projets</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button id="theme-toggle" class="theme-switch" type="button" aria-label="Changer de thème (clair / sombre)">
+        <span class="theme-label" id="theme-label">mode sombre</span>
+      </button>
+    </nav>
 
     <!-- En-tête principal -->
     <header class="site-header">
       <div class="header-top">
         <div>
           <h1 class="site-name">Tom Vernier-Fétu</h1>
-          <p class="site-tagline">Apprenti développeur web & logiciel · Autodidacte</p>
+          <p class="site-tagline">Futur étudiant ENI École Informatique · Développement Web & Logiciel</p>
         </div>
-        <button id="theme-toggle" class="theme-switch" aria-label="Changer de thème (clair / sombre)">
-          <span class="theme-label" id="theme-label">mode sombre</span>
-        </button>
       </div>
 
       <div class="status-row">
-        <span class="status-indicator"></span>
+        <span class="status-indicator" aria-hidden="true"></span>
         <span class="status-text">
           Recherche d'alternance · Dès que possible · Angers & agglomération
         </span>
       </div>
 
       <div class="quick-links">
+        <a href="assets/cv.pdf" class="btn-cv" target="_blank" rel="noopener noreferrer">Consulter mon CV (PDF) ↗</a>
         <a href="https://github.com/TomVernierFetu" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/tomvernierfetu/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        <a href="mailto:tomvernierfetu@gmail.com">tomvernierfetu@gmail.com</a>
+        <button class="btn-copy" type="button" data-copy-email="tomvernierfetu@gmail.com" title="Copier l'adresse email">Copier email</button>
         <span class="meta-item">Rythme ENI : 6 sem. entreprise / 2 sem. cours</span>
       </div>
     </header>
@@ -49,17 +66,17 @@
 
     <main>
       <!-- À propos & Contexte -->
-      <section class="section">
+      <section class="section" id="a-propos">
         <h2 class="section-title">À propos</h2>
         <div class="prose">
           <p>
-            Passionné d'informatique depuis mon enfance, j'ai trouvé ma voie pratique au lycée à travers un <strong>Bac Pro CIEL</strong> (Cybersécurité, Informatique & Réseaux). Découvrir le matériel, les architectures réseau et le câblage m'a donné le déclic du concret.
+            Passionné d'informatique depuis mon enfance, j'ai trouvé ma voie technique au lycée avec un <strong>Bac Pro CIEL</strong> (Cybersécurité, Informatique & Réseaux, obtenu avec Mention Bien). Découvrir le matériel, les architectures réseau et le câblage m'a donné le déclic du concret.
           </p>
           <p>
-            En parallèle, j'ai appris le développement en autodidacte en concevant des interfaces pour des serveurs de jeu (Minecraft Bedrock / PocketMine-MP), puis un site web pour mon chef-d'œuvre de Bac Pro.
+            Après une 1ère année de <strong>BTS SIO option SLAM</strong> où j'ai consolidé mes bases en algorithmique, C# (.NET), PHP/PDO et bases de données relationnelles SQL, le format très théorique et scolaire ne correspondait plus à ma volonté d'apprendre sur le terrain.
           </p>
           <p>
-            Pour la rentrée, je poursuis mon parcours à l'<strong>ENI École Informatique</strong> en cursus développeur web & logiciel. Je recherche une alternance à Angers au rythme de <strong>6 semaines consécutives en entreprise pour 2 semaines en formation</strong>.
+            Je poursuis donc mon parcours à l'<strong>ENI École Informatique</strong> en cursus Développeur Full-Stack (Bac+2). Je recherche une alternance à Angers et ses alentours au rythme professionnalisant de <strong>6 semaines consécutives en entreprise pour 2 semaines en formation</strong>.
           </p>
         </div>
       </section>
@@ -67,7 +84,7 @@
       <hr class="divider">
 
       <!-- Fiche Alternance pour les recruteurs -->
-      <section class="section">
+      <section class="section" id="alternance">
         <h2 class="section-title">Modalités d'alternance</h2>
         <div class="meta-table">
           <div class="meta-row">
@@ -84,7 +101,7 @@
           </div>
           <div class="meta-row">
             <span class="meta-key">Postes visés</span>
-            <span class="meta-val">Développement applicatif / web (PHP, C#, SQL) ou Systèmes & Réseaux</span>
+            <span class="meta-val">Développement Web & Logiciel (PHP, C#, SQL, JS) ou Systèmes & Réseaux</span>
           </div>
           <div class="meta-row">
             <span class="meta-key">Contrat</span>
@@ -96,151 +113,138 @@
       <hr class="divider">
 
       <!-- Projets sélectionnés -->
-      <section class="section">
+      <section class="section" id="projets">
         <div class="section-header-row">
           <h2 class="section-title">Projets sélectionnés</h2>
-          <span class="section-count">5 dépôts publics</span>
+          <span class="section-count">6 projets concrets</span>
         </div>
 
-        <div class="projects-list">
+        <div class="projects-grid">
 
           <!-- Projet 1 : Cavaliers de l'Apocalypse -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <a href="https://github.com/TomVernierFetu/cavaliers-apocalypse-web" target="_blank" rel="noopener noreferrer">
-                    cavaliers-apocalypse-web ↗
-                  </a>
-                </h3>
-                <span class="project-year">2024</span>
-              </div>
-              <p class="project-summary">
-                Plateforme web de gestion pour un club associatif d'échecs. Implémentation d'un CRUD complet des adhérents, calendrier des rencontres, structure PHP modulaire et protection stricte contre les injections SQL via requêtes préparées PDO.
-              </p>
-              <div class="project-tags">
-                <code>PHP 8</code>
-                <code>MySQL</code>
-                <code>PDO</code>
-                <code>CRUD</code>
-                <code>HTML5 / CSS3</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <a href="https://github.com/TomVernierFetu/cavaliers-apocalypse-web" target="_blank" rel="noopener noreferrer">
+                  cavaliers-apocalypse-web ↗
+                </a>
+              </h3>
+              <span class="project-year">Web / PHP</span>
+            </div>
+            <p class="project-summary">
+              Plateforme web de gestion pour un club associatif d'échecs. CRUD complet des adhérents, calendrier des rencontres, structure PHP modulaire et protection contre les injections SQL via requêtes préparées PDO.
+            </p>
+            <div class="project-tags">
+              <code>PHP 8</code>
+              <code>MySQL</code>
+              <code>PDO</code>
+              <code>CRUD</code>
+              <code>HTML5 / CSS3</code>
             </div>
           </article>
 
           <!-- Projet 2 : Retro Arcade Console -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <a href="https://github.com/TomVernierFetu/retro-arcade-csharp" target="_blank" rel="noopener noreferrer">
-                    retro-arcade-csharp ↗
-                  </a>
-                </h3>
-                <span class="project-year">2024</span>
-              </div>
-              <p class="project-summary">
-                Console de mini-jeux d'arcade en mode terminal C# (.NET). Regroupe 5 jeux complets (Morpion avec logique joueur/IA, Allumettes de Nim, Juste Prix, Pendu, Machine à sous) avec gestion stricte de boucles d'état, validation des entrées et système de score persistant.
-              </p>
-              <div class="project-tags">
-                <code>C#</code>
-                <code>.NET</code>
-                <code>Algorithmique</code>
-                <code>CLI</code>
-                <code>Gestion d'état</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <a href="https://github.com/TomVernierFetu/retro-arcade-csharp" target="_blank" rel="noopener noreferrer">
+                  retro-arcade-csharp ↗
+                </a>
+              </h3>
+              <span class="project-year">Logiciel / C#</span>
+            </div>
+            <p class="project-summary">
+              Console de mini-jeux d'arcade en terminal C# (.NET). Regroupe 5 jeux complets (Morpion joueur/IA, Nim, Juste Prix, Pendu, Machine à sous) avec boucles d'état, validation des entrées et scores.
+            </p>
+            <div class="project-tags">
+              <code>C#</code>
+              <code>.NET</code>
+              <code>Algorithmique</code>
+              <code>CLI</code>
+              <code>Gestion d'état</code>
             </div>
           </article>
 
           <!-- Projet 3 : Angers Actu Blog -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <a href="https://github.com/TomVernierFetu/angers-actu-blog" target="_blank" rel="noopener noreferrer">
-                    angers-actu-blog ↗
-                  </a>
-                </h3>
-                <span class="project-year">2024</span>
-              </div>
-              <p class="project-summary">
-                Site d'actualités et d'événements locaux angevins. Intégration en HTML5 sémantique et CSS3 moderne avec flexbox, conception adaptative (mobile, tablette, bureau) et feuille de style dédiée pour l'impression papier via <code>@media print</code>.
-              </p>
-              <div class="project-tags">
-                <code>HTML5 sémantique</code>
-                <code>CSS3 Flexbox</code>
-                <code>Responsive</code>
-                <code>Print CSS</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <a href="https://github.com/TomVernierFetu/angers-actu-blog" target="_blank" rel="noopener noreferrer">
+                  angers-actu-blog ↗
+                </a>
+              </h3>
+              <span class="project-year">Front-end</span>
+            </div>
+            <p class="project-summary">
+              Site d'actualités et d'événements angevins. Intégration HTML5 sémantique et CSS3 Flexbox, mise en page responsive (mobile, tablette, bureau) et feuille d'impression dédiée via <code>@media print</code>.
+            </p>
+            <div class="project-tags">
+              <code>HTML5 sémantique</code>
+              <code>CSS3 Flexbox</code>
+              <code>Responsive</code>
+              <code>Print CSS</code>
             </div>
           </article>
 
           <!-- Projet 4 : Médiathèque SQL -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <a href="https://github.com/TomVernierFetu/mediatheque-database-sql" target="_blank" rel="noopener noreferrer">
-                    mediatheque-database-sql ↗
-                  </a>
-                </h3>
-                <span class="project-year">2024</span>
-              </div>
-              <p class="project-summary">
-                Schéma relationnel d'une médiathèque (abonnés, emprunts, ouvrages, auteurs) et batterie de plus de 60 requêtes SQL d'analyse métier : jointures multi-tables (INNER / LEFT / RIGHT JOIN), clauses GROUP BY / HAVING et fonctions d'agrégation.
-              </p>
-              <div class="project-tags">
-                <code>SQL standard</code>
-                <code>MySQL / MariaDB</code>
-                <code>Modélisation relationnelle</code>
-                <code>Agrégation</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <a href="https://github.com/TomVernierFetu/mediatheque-database-sql" target="_blank" rel="noopener noreferrer">
+                  mediatheque-database-sql ↗
+                </a>
+              </h3>
+              <span class="project-year">Base de données</span>
+            </div>
+            <p class="project-summary">
+              Schéma relationnel d'une médiathèque (abonnés, emprunts, ouvrages, auteurs) et plus de 60 requêtes SQL métier : jointures multi-tables (INNER / LEFT / RIGHT JOIN), GROUP BY / HAVING et agrégations.
+            </p>
+            <div class="project-tags">
+              <code>SQL standard</code>
+              <code>MySQL / MariaDB</code>
+              <code>Jointures</code>
+              <code>Agrégation</code>
             </div>
           </article>
 
           <!-- Projet 5 : Automation & Backup Scripts -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <a href="https://github.com/TomVernierFetu/automation-backup-scripts" target="_blank" rel="noopener noreferrer">
-                    automation-backup-scripts ↗
-                  </a>
-                </h3>
-                <span class="project-year">2024</span>
-              </div>
-              <p class="project-summary">
-                Suite de scripts d'automatisation d'administration système : sauvegardes avec horodatage dynamique, compression 7-Zip, montage de partages réseau SMB (<code>net use</code>), transfert distant FTP automatisé et script Bash d'audit système sous Linux Debian.
-              </p>
-              <div class="project-tags">
-                <code>Bash (Linux)</code>
-                <code>Batch (Windows)</code>
-                <code>7-Zip</code>
-                <code>FTP / SMB</code>
-                <code>Sysadmin</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <a href="https://github.com/TomVernierFetu/automation-backup-scripts" target="_blank" rel="noopener noreferrer">
+                  automation-backup-scripts ↗
+                </a>
+              </h3>
+              <span class="project-year">Scripting</span>
+            </div>
+            <p class="project-summary">
+              Scripts d'automatisation système : sauvegardes horodatées, compression 7-Zip, montage de partages SMB (<code>net use</code>), transfert FTP automatisé et script Bash d'audit système sous Debian.
+            </p>
+            <div class="project-tags">
+              <code>Bash (Linux)</code>
+              <code>Batch (Windows)</code>
+              <code>7-Zip</code>
+              <code>FTP / SMB</code>
             </div>
           </article>
 
           <!-- Projet 6 : Home-lab DNS Pi-hole -->
           <article class="project-entry">
-            <div class="project-main">
-              <div class="project-title-row">
-                <h3 class="project-name">
-                  <span>home-lab-dns-pihole</span>
-                </h3>
-                <span class="project-year">Projet perso</span>
-              </div>
-              <p class="project-summary">
-                Déploiement d'un serveur DNS local sur machine dédiée avec filtrage Pi-hole. Analyse des flux réseau domestiques, blocage de traceurs, gestion des baux DHCP et réservation d'adresses IP statiques.
-              </p>
-              <div class="project-tags">
-                <code>Linux</code>
-                <code>DNS</code>
-                <code>Pi-hole</code>
-                <code>Réseau local</code>
-                <code>Filtrage</code>
-              </div>
+            <div class="project-title-row">
+              <h3 class="project-name">
+                <span>home-lab-dns-pihole</span>
+              </h3>
+              <span class="project-year">Home-lab</span>
+            </div>
+            <p class="project-summary">
+              Déploiement d'un serveur DNS local sur machine dédiée avec filtrage Pi-hole. Analyse des flux réseau domestiques, blocage de traceurs, gestion des baux DHCP et réservation d'adresses IP statiques.
+            </p>
+            <div class="project-tags">
+              <code>Linux</code>
+              <code>DNS</code>
+              <code>Pi-hole</code>
+              <code>DHCP</code>
+              <code>Réseau local</code>
             </div>
           </article>
 
@@ -249,26 +253,75 @@
 
       <hr class="divider">
 
-      <!-- Parcours & Formations -->
-      <section class="section">
-        <h2 class="section-title">Parcours</h2>
+      <!-- Parcours & Expériences -->
+      <section class="section" id="parcours">
+        <h2 class="section-title">Parcours & Expériences</h2>
+
+        <h3 class="timeline-section-subtitle">Expériences de terrain</h3>
         <div class="timeline-list">
-          
+
           <div class="timeline-row">
-            <span class="timeline-date">2026 - 2028</span>
+            <span class="timeline-date">2026 (10 sem.)</span>
             <div class="timeline-content">
-              <h3 class="timeline-heading">ENI École Informatique</h3>
-              <p class="timeline-sub">Cursus Développeur Web & Logiciel · Alternance (6 sem. entreprise / 2 sem. cours)</p>
-              <p class="timeline-desc">Spécialisation en développement d'applications, architectures logicielles et bases de données relationnelles.</p>
+              <h4 class="timeline-heading">CHU d'Angers — Direction des Services Numériques</h4>
+              <p class="timeline-sub">Stagiaire informatique & réseau · Infrastructure & Supervision</p>
+              <p class="timeline-desc">Déploiement en production d'un serveur Zabbix 7.0 LTS sous Debian et Zabbix Agent 2 pour superviser un parc de +1 000 VM et serveurs critiques (Talend ESB). Configuration de templates, découverte dynamique LLD, métriques chiffrées SNMPv3, interventions en baies de brassage et téléphonie (ToIP / Cuivre).</p>
+              <div class="project-tags timeline-tags">
+                <code>Zabbix 7.0 LTS</code>
+                <code>Agent 2</code>
+                <code>Debian</code>
+                <code>SNMPv3</code>
+                <code>LLD</code>
+                <code>Talend ESB</code>
+              </div>
             </div>
           </div>
 
           <div class="timeline-row">
-            <span class="timeline-date">2022 - 2024</span>
+            <span class="timeline-date">2025 (8 sem.)</span>
             <div class="timeline-content">
-              <h3 class="timeline-heading">Bac Pro CIEL (Cybersécurité, Informatique & Réseaux)</h3>
-              <p class="timeline-sub">Lycée polyvalent · Angers</p>
-              <p class="timeline-desc">Maintenance matérielle, administration réseau, adressage IP, câblage et réalisation d'un chef-d'œuvre de fin d'études axé sur le développement d'un site web.</p>
+              <h4 class="timeline-heading">D'Accueil — Distribution Automatique</h4>
+              <p class="timeline-sub">Stagiaire en maintenance technique & monétique</p>
+              <p class="timeline-desc">Déploiement de télémétrie IoT : configuration de routeurs 4G industriels Teltonika (séries RUT), intégration de cartes SIM M2M, raccordement Ethernet et mise à jour de firmwares. Paramétrage de solutions de paiement électronique (TPE) et maintenance d'automates.</p>
+              <div class="project-tags timeline-tags">
+                <code>Teltonika RUT 4G</code>
+                <code>SIM M2M</code>
+                <code>Télémétrie IoT</code>
+                <code>TPE</code>
+                <code>Ethernet</code>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 class="timeline-section-subtitle">Formations</h3>
+        <div class="timeline-list">
+
+          <div class="timeline-row">
+            <span class="timeline-date">2026 - 2028</span>
+            <div class="timeline-content">
+              <h4 class="timeline-heading">ENI École Informatique</h4>
+              <p class="timeline-sub">Cursus Développeur Full-Stack (Bac+2) · Alternance (6 sem. entreprise / 2 sem. cours)</p>
+              <p class="timeline-desc">Spécialisation en développement web & logiciel, architectures applicatives, gestion de bases de données et bonnes pratiques de génie logiciel.</p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <span class="timeline-date">2026</span>
+            <div class="timeline-content">
+              <h4 class="timeline-heading">BTS SIO SLAM (1ère année)</h4>
+              <p class="timeline-sub">Lycée Polyvalent Chevrollier · Angers</p>
+              <p class="timeline-desc">Consolidation des bases de programmation : algorithmique, C# (.NET), requêtes préparées PHP/PDO, modélisation relationnelle et requêtes SQL.</p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <span class="timeline-date">2023 - 2026</span>
+            <div class="timeline-content">
+              <h4 class="timeline-heading">Baccalauréat Professionnel CIEL</h4>
+              <p class="timeline-sub">Lycée Polyvalent Chevrollier · Angers · Mention Bien · Certification PRAP (INRS)</p>
+              <p class="timeline-desc">Cybersécurité, Informatique & Réseaux, Électronique. Maintenance matérielle, routage, adressage IP, et participation technique au dépouillement des votes du Festival Premiers Plans.</p>
             </div>
           </div>
 
@@ -278,20 +331,20 @@
       <hr class="divider">
 
       <!-- Stack technique -->
-      <section class="section">
+      <section class="section" id="stack">
         <h2 class="section-title">Stack technique</h2>
         <div class="stack-table">
           <div class="stack-row">
             <span class="stack-label">Développement</span>
-            <span class="stack-value">PHP 8 (PDO), C# (.NET), SQL (MySQL, MariaDB), HTML5, CSS3, notions de JavaScript</span>
+            <span class="stack-value">PHP 8 (PDO), SQL (MySQL, MariaDB), HTML5, CSS3, notions en JavaScript et C# (.NET)</span>
           </div>
           <div class="stack-row">
             <span class="stack-label">Systèmes & Réseaux</span>
-            <span class="stack-value">Linux (Debian), Windows, scripts Bash & Batch, DNS (Pi-hole), notions DHCP et routage</span>
+            <span class="stack-value">Linux (Debian, Ubuntu), Windows Server, Zabbix 7.0 LTS, routeurs 4G Teltonika RUT, IPv4, VLAN, DHCP, DNS, notions AD, scripts Bash & Batch</span>
           </div>
           <div class="stack-row">
-            <span class="stack-label">Outils & Méthodes</span>
-            <span class="stack-value">Git, GitHub, VS Code, modélisation relationnelle de BDD, requêtes préparées (sécurité)</span>
+            <span class="stack-label">Outils & Sécurité</span>
+            <span class="stack-value">Git, GitHub, VS Code, JetBrains, requêtes préparées, hachage, VMware, Cisco Packet Tracer, certification PRAP (INRS)</span>
           </div>
         </div>
       </section>
@@ -299,13 +352,17 @@
       <hr class="divider">
 
       <!-- Contact -->
-      <section class="section contact-section">
+      <section class="section contact-section" id="contact">
         <h2 class="section-title">Contact</h2>
         <p class="prose">
           À la recherche d'une alternance dès que possible sur Angers et son agglomération. Je suis disponible pour un échange technique ou un entretien :
         </p>
         <div class="contact-details">
-          <p>Email : <a href="mailto:tomvernierfetu@gmail.com" class="link-underlined">tomvernierfetu@gmail.com</a></p>
+          <p class="contact-line">
+            <span>Email : <a href="mailto:tomvernierfetu@gmail.com" class="link-underlined">tomvernierfetu@gmail.com</a></span>
+            <button class="btn-copy btn-copy-sm" type="button" data-copy-email="tomvernierfetu@gmail.com" title="Copier l'adresse email">Copier</button>
+          </p>
+          <p>Téléphone : <a href="tel:+33672044377" class="link-underlined">+33 6 72 04 43 77</a></p>
           <p>LinkedIn : <a href="https://www.linkedin.com/in/tomvernierfetu/" target="_blank" rel="noopener noreferrer" class="link-underlined">linkedin.com/in/tomvernierfetu</a></p>
           <p>GitHub : <a href="https://github.com/TomVernierFetu" target="_blank" rel="noopener noreferrer" class="link-underlined">github.com/TomVernierFetu</a></p>
           <p>Localisation : Angers (49) · Transports en commun Irigo</p>
@@ -314,7 +371,13 @@
     </main>
 
     <footer class="site-footer">
-      <p>Tom Vernier-Fétu · 2026 · Angers</p>
+      <div class="footer-content">
+        <p>Tom Vernier-Fétu · 2026 · Angers</p>
+        <div class="footer-links">
+          <a href="assets/cv.pdf" download>Télécharger mon CV (PDF) ↓</a>
+          <a href="https://github.com/TomVernierFetu/tomvernierfetu.github.io" target="_blank" rel="noopener noreferrer">Code source ↗</a>
+        </div>
+      </div>
     </footer>
 
   </div>
