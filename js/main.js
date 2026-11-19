@@ -1,14 +1,9 @@
-/* ==========================================================================
-   Portfolio — Tom Vernier-Fétu
-   Script minimaliste : bascule de thème clair/sombre avec mémoire locale
-   ========================================================================== */
-
+// Gestion du thème clair/sombre avec mémorisation locale
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const themeLabel = document.getElementById('theme-label');
   const htmlRoot = document.documentElement;
 
-  // Récupérer le thème sauvegardé ou le système (défaut : light selon directives éditoriales)
   const savedTheme = localStorage.getItem('theme');
   const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   
