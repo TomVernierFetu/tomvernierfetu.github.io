@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Démo - Retro Arcade Console (C# .NET)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0C0C0C;
+      color: #E5E5E3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #242424;
+      font-size: 0.82rem;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .title {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      color: #F2F2F0;
+    }
+    .source-link {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      color: #60A5FA;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .ai-badge {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      color: #A3A3A0;
+      background-color: #161616;
+      border: 1px solid #2A2A2A;
+      border-radius: 4px;
+      padding: 0.25rem 0.55rem;
+    }
+    .terminal-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #111111;
+      border: 1px solid #262626;
+      border-radius: 6px;
+      overflow: hidden;
+      min-height: 440px;
+    }
+    .terminal-output {
+      flex: 1;
+      padding: 1rem 1.15rem;
+      overflow-y: auto;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .c-default { color: #E5E5E3; }
+    .c-cyan { color: #38BDF8; }
+    .c-green { color: #4ADE80; }
+    .c-yellow { color: #FACC15; }
+    .c-darkyellow { color: #FB923C; }
+    .c-red { color: #F87171; }
+    .c-magenta { color: #E879F9; }
+    .quick-keys {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      border-top: 1px solid #202020;
+      background-color: #151515;
+    }
+    .quick-keys[hidden] { display: none; }
+    .quick-btn {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      padding: 0.22rem 0.55rem;
+      background: #1D1D1D;
+      color: #D4D4D0;
+      border: 1px solid #2E2E2E;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .quick-btn:hover { border-color: #60A5FA; color: #60A5FA; }
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.9rem;
+      border-top: 1px solid #242424;
+      background-color: #0E0E0E;
+    }
+    .prompt-chevron {
+      font-family: "JetBrains Mono", monospace;
+      color: #4ADE80;
+      font-weight: 600;
+    }
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: #F2F2F0;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.86rem;
+      outline: none;
+    }
+    .send-btn {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.76rem;
+      padding: 0.32rem 0.7rem;
+      background: #1F2937;
+      color: #F2F2F0;
+      border: 1px solid #374151;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .send-btn:hover { border-color: #60A5FA; color: #60A5FA; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="title">retro-arcade-csharp (.NET 8)</span>
+      <a class="source-link" href="https://github.com/TomVernierFetu/retro-arcade-csharp/blob/main/Program.cs" target="_blank" rel="noopener noreferrer">Voir Program.cs ↗</a>
+    </div>
+    <span class="ai-badge" title="Aperçu web généré avec l'IA pour tester le programme dans le portfolio">Aperçu web généré avec l'IA (fidèle au code C#)</span>
+  </div>
+
+  <div class="terminal-wrap">
+    <div id="output" class="terminal-output"></div>
+    <div id="quick-keys" class="quick-keys"></div>
+    <form id="input-form" class="input-row">
+      <span class="prompt-chevron">&gt;</span>
+      <input id="terminal-input" class="terminal-input" type="text" autocomplete="off" placeholder="Saisir une réponse puis Entrée..." autofocus>
+      <button type="submit" class="send-btn">Entrée ↵</button>
+    </form>
+  </div>
+
+  <script>
+    // Portage fidèle des 5 mini-jeux de Program.cs en terminal asynchrone navigateur
+    const outputEl = document.getElementById('output');
+    const quickKeysEl = document.getElementById('quick-keys');
+    const inputForm = document.getElementById('input-form');
+    const inputEl = document.getElementById('terminal-input');
+
+    let pseudoJoueur = 'Joueur';
+    let scoreCumule = 0;
+    let pendingResolver = null;
+    let waitingKey = false;
+
+    function rnd(min, maxExclusive) {
+      return Math.floor(Math.random() * (maxExclusive - min)) + min;
+    }
+
+    function clearConsole() {
+      outputEl.innerHTML = '';
+    }
+
+    function writeLine(text = '', colorClass = 'c-default') {
+      const span = document.createElement('span');
+      span.className = colorClass;
+      span.textContent = text + '\n';
+      outputEl.appendChild(span);
+      outputEl.scrollTop = outputEl.scrollHeight;
+    }
+
+    function writePrompt(text, colorClass = 'c-default') {
+      const span = document.createElement('span');
+      span.className = colorClass;
+      span.textContent = text;
+      outputEl.appendChild(span);
+      outputEl.scrollTop = outputEl.scrollHeight;
+    }
+
+    function setQuickOptions(options) {
+      quickKeysEl.innerHTML = '';
+      quickKeysEl.hidden = !options.length;
+      options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quick-btn';
+        btn.textContent = opt.label;
+        btn.addEventListener('click', () => submitValue(opt.value));
+        quickKeysEl.appendChild(btn);
+      });
+    }
+
+    function submitValue(val) {
+      if (waitingKey && pendingResolver) {
+        const resolve = pendingResolver;
+        pendingResolver = null;
+        waitingKey = false;
+        resolve(val);
+        return;
+      }
+      if (pendingResolver) {
+        const resolve = pendingResolver;
+        pendingResolver = null;
+        writeLine(val, 'c-default');
+        resolve(val);
+      }
+    }
+
+    function readLine(options = []) {
+      setQuickOptions(options);
+      inputEl.focus();
+      return new Promise((resolve) => {
+        pendingResolver = resolve;
+      });
+    }
+
+    function waitForKey() {
+      waitingKey = true;
+      setQuickOptions([{ label: 'Continuer ↵', value: '' }]);
+      inputEl.focus();
+      return new Promise((resolve) => {
+        pendingResolver = resolve;
+      });
+    }
+
+    inputForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = inputEl.value;
+      inputEl.value = '';
+      submitValue(val);
+    });
+
+    async function jeu1NombreMystere() {
+      clearConsole();
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('|               NOMBRE MYSTERE                |', 'c-green');
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('\nLe but du jeu est de découvrir un nombre en maximum 7 essais.');
+      writeLine('Le nombre mystère est compris entre 1 et 100.');
+
+      const nombreSecret = rnd(1, 101);
+      let essai = 1;
+      let trouve = false;
+      let pointsGagnes = 0;
+
+      while (essai <= 7 && !trouve) {
+        writePrompt(`\nQuelle est ta proposition n°${essai} ? (entre 1 et 100) : `);
+        const saisie = await readLine([
+          { label: '50', value: '50' },
+          { label: '25', value: '25' },
+          { label: '75', value: '75' }
+        ]);
+        const proposition = Number.parseInt(saisie, 10);
+
+        if (!Number.isInteger(proposition) || String(proposition) !== saisie.trim() || proposition < 1 || proposition > 100) {
+          writeLine('Saisie invalide ! Vous devez entrer un entier entre 1 et 100.', 'c-red');
+          continue;
+        }
+
+        if (proposition === nombreSecret) {
+          trouve = true;
+          pointsGagnes = 70 - ((essai - 1) * 10);
+          writeLine(`\nBravo ${pseudoJoueur} ! Tu as trouvé en ${essai} essai(s).`, 'c-green');
+          writeLine(`Tu marques ${pointsGagnes} points !`, 'c-green');
+        } else if (proposition > nombreSecret) {
+          writeLine('Le nombre mystère est plus petit', 'c-cyan');
+          essai++;
+        } else {
+          writeLine('Le nombre mystère est plus grand', 'c-cyan');
+          essai++;
+        }
+      }
+
+      if (!trouve) {
+        writeLine('\nDommage ! Vous avez épuisé vos 7 essais.', 'c-red');
+        writeLine(`Le nombre mystère était : ${nombreSecret}`, 'c-red');
+      }
+
+      scoreCumule += pointsGagnes;
+      writeLine('\nAppuyez sur Entrée ou Continuer pour revenir à la borne...');
+      await waitForKey();
+    }
+
+    async function jeu2StationSpatiale() {
+      clearConsole();
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('|              STATION SPATIALE               |', 'c-green');
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('\nLe but du jeu est de rejoindre la station spatiale avant de manquer de carburant.');
+
+      let distanceRestante = 100;
+      let carburant = 50;
+      let partieEnCours = true;
+      let victoire = false;
+
+      while (partieEnCours) {
+        writeLine(`\nDistance restante : ${distanceRestante}`, 'c-yellow');
+        writeLine(`Carburant restant : ${carburant}`, 'c-yellow');
+        writeLine('\n1 - Petite poussée   - Économique (distance 10 pour 2 carburant)');
+        writeLine('2 - Poussée moyenne  - Normal     (distance 20 pour 5 carburant)');
+        writeLine('3 - Grande poussée   - Turbo      (distance 35 pour 12 carburant)');
+        writePrompt('Quelle poussée choisis-tu ? (1, 2 ou 3) : ');
+
+        const choixPoussee = (await readLine([
+          { label: '1 - Petite', value: '1' },
+          { label: '2 - Moyenne', value: '2' },
+          { label: '3 - Grande', value: '3' }
+        ])).trim();
+
+        let gainDist = 0;
+        let coutCarb = 0;
+        if (choixPoussee === '1') { gainDist = 10; coutCarb = 2; }
+        else if (choixPoussee === '2') { gainDist = 20; coutCarb = 5; }
+        else if (choixPoussee === '3') { gainDist = 35; coutCarb = 12; }
+        else {
+          writeLine('Poussée inconnue ! Maintien des réacteurs.');
+          continue;
+        }
+
+        carburant -= coutCarb;
+        distanceRestante = Math.max(0, distanceRestante - gainDist);
+
+        const alea = rnd(1, 5);
+        writeLine('');
+        if (alea === 1) {
+          writeLine('Une attraction gravitationnelle te fait avancer de 20 !', 'c-cyan');
+          distanceRestante = Math.max(0, distanceRestante - 20);
+        } else if (alea === 2) {
+          writeLine('Tu croises une pluie d\'astéroïdes. Tu perds 5 unités de carburant !', 'c-darkyellow');
+          carburant -= 5;
+        } else if (alea === 3) {
+          writeLine('Tu viens d\'être absorbé par un trou noir. :(', 'c-red');
+          writeLine('Fin de partie. Tu as perdu.', 'c-red');
+          partieEnCours = false;
+        } else {
+          writeLine('Aucun péril en vue. Un peu de répit.');
+        }
+
+        if (distanceRestante <= 0) {
+          writeLine(`\nTu es arrivé à destination. Bravo ${pseudoJoueur} !`, 'c-green');
+          victoire = true;
+          partieEnCours = false;
+        } else if (carburant <= 0 && partieEnCours) {
+          writeLine('\nPanne de carburant dans le vide spatial... Mission échouée !', 'c-red');
+          partieEnCours = false;
+        }
+      }
+
+      if (victoire) {
+        const pointsGagnes = 50 + (carburant * 2);
+        writeLine(`Score bonus carburant : +${pointsGagnes} points !`, 'c-green');
+        scoreCumule += pointsGagnes;
+      }
+
+      writeLine('\nAppuyez sur Entrée ou Continuer pour revenir à la borne...');
+      await waitForKey();
+    }
+
+    async function jeu3TirDePrecision() {
+      clearConsole();
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('|              TIR DE PRECISION               |', 'c-green');
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('\nLe but du jeu est de tirer au plus près d\'une cible située entre 1 et 100 mètres.');
+      writeLine('Elle bouge à chaque tir. Vous avez 5 tirs pour marquer un maximum de points.');
+
+      let scorePartie = 0;
+      for (let tir = 1; tir <= 5; tir++) {
+        writeLine(`\n***** Tir n°${tir} *****`);
+        const cible = rnd(1, 101);
+        writePrompt('À quelle distance tires-tu ? (entre 1 et 100) : ');
+        const saisie = await readLine([
+          { label: '25', value: '25' },
+          { label: '50', value: '50' },
+          { label: '75', value: '75' }
+        ]);
+        const tirJoueur = Number.parseInt(saisie, 10);
+
+        if (!Number.isInteger(tirJoueur) || String(tirJoueur) !== saisie.trim() || tirJoueur < 1 || tirJoueur > 100) {
+          writeLine('Tir hors-champ ! Tir manqué.', 'c-red');
+          continue;
+        }
+
+        const ecart = Math.abs(tirJoueur - cible);
+        writeLine(`Distance de la cible : ${cible} mètres (écart : ${ecart}m)`);
+
+        let points = 0;
+        if (ecart === 0) { points = 75; writeLine('Dans le mille. Quel champion !! (+75 pts)', 'c-green'); }
+        else if (ecart <= 5) { points = 50; writeLine('Félicitations ! Quel tireur ! (+50 pts)', 'c-green'); }
+        else if (ecart <= 15) { points = 40; writeLine('Beau tir ! (+40 pts)', 'c-cyan'); }
+        else if (ecart <= 30) { points = 30; writeLine('Pas trop mal (+30 pts)', 'c-yellow'); }
+        else if (ecart <= 45) { points = 20; writeLine('Vraiment moyen (+20 pts)', 'c-darkyellow'); }
+        else if (ecart <= 60) { points = 10; writeLine('Pas terrible (+10 pts)', 'c-magenta'); }
+        else if (ecart <= 75) { points = 5; writeLine('Raté (+5 pts)', 'c-red'); }
+        else { writeLine('Complètement raté (0 pt)', 'c-red'); }
+
+        scorePartie += points;
+      }
+
+      writeLine(`\n**** ${pseudoJoueur}, tu as marqué ${scorePartie} points au tir ! ****`, 'c-green');
+      scoreCumule += scorePartie;
+      writeLine('\nAppuyez sur Entrée ou Continuer pour revenir à la borne...');
+      await waitForKey();
+    }
+
+    async function jeu4LaQuete() {
+      clearConsole();
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine('|               SURVIVAL QUEST                |', 'c-green');
+      writeLine('+---------------------------------------------+', 'c-green');
+      writeLine(`\n${pseudoJoueur}, ta mission : traverser les 10 étapes d'un environnement hostile pour atteindre le refuge.`);
+
+      let vie = 100;
+      let nourriture = 10;
+      let pieces = 20;
+      let potions = 0;
+      let etape = 1;
+
+      while (etape <= 10 && vie > 0) {
+        writeLine('\n+-----------------------------------+');
+        writeLine('| SURVIVAL QUEST                    |');
+        writeLine('+-----------------------------------+');
+        writeLine(`| Explorateur : ${pseudoJoueur}`);
+        writeLine(`| Vie         : ${vie}`);
+        writeLine(`| Nourriture  : ${nourriture}`);
+        writeLine(`| Pièces      : ${pieces}`);
+        writeLine(`| Potion      : ${potions}`);
+        writeLine(`| Étape       : ${etape} / 10`);
+        writeLine('+-----------------------------------+');
+
+        const evt = rnd(1, 9);
+        if (evt === 1) {
+          writeLine('\nTu trouves une caisse de provisions !');
+          writeLine('1 - Manger (+2 nourritures, +10 PV)');
+          writeLine('2 - Conserver (+10 nourritures)');
+          writePrompt('Votre choix : ');
+          if ((await readLine([{ label: '1 - Manger', value: '1' }, { label: '2 - Conserver', value: '2' }])).trim() === '1') {
+            nourriture += 2;
+            vie = Math.min(100, vie + 10);
+            writeLine('Miam ! Tu gagnes 2 nourritures et 10 PV.');
+          } else {
+            nourriture += 10;
+            writeLine('Prévoyant ! Tu ajoutes 10 nourritures à ton sac.');
+          }
+        } else if (evt === 2) {
+          writeLine('\nTu trouves un trésor !');
+          writeLine('1 - Le prendre (+15 pièces)');
+          writeLine('2 - Le laisser');
+          writePrompt('Votre choix : ');
+          if ((await readLine([{ label: '1 - Prendre', value: '1' }, { label: '2 - Laisser', value: '2' }])).trim() === '1') {
+            pieces += 15;
+            writeLine('Fortune ! Tu ramasses 15 pièces.');
+          } else {
+            writeLine('Prudent, tu passes ton chemin.');
+          }
+        } else if (evt === 3) {
+          writeLine('\nAïe ! Tu es tombé dans un piège ! Tu perds 20 PV.', 'c-red');
+          vie -= 20;
+        } else if (evt === 4) {
+          writeLine('\nUn marchand ambulant te propose son aide :');
+          writeLine('1 - Acheter 2 nourritures pour 10 pièces');
+          writeLine('2 - Acheter une potion pour 20 pièces (restaure 25 PV)');
+          writeLine('3 - Ne rien acheter');
+          writePrompt('Votre choix : ');
+          const choixM = (await readLine([
+            { label: '1 - Nourriture', value: '1' },
+            { label: '2 - Potion', value: '2' },
+            { label: '3 - Rien', value: '3' }
+          ])).trim();
+          if (choixM === '1' && pieces >= 10) {
+            pieces -= 10; nourriture += 2;
+            writeLine('Achat réussi : +2 nourritures.');
+          } else if (choixM === '2' && pieces >= 20) {
+            pieces -= 20; potions += 1;
+            writeLine('Achat réussi : +1 potion.');
+          } else {
+            writeLine('Vous saluez le marchand et continuez.');
+          }
+        } else if (evt === 5) {
+          writeLine('\nUne violente tempête éclate ! Tu perds 1 nourriture et 10 PV.', 'c-darkyellow');
+          nourriture = Math.max(0, nourriture - 1);
+          vie -= 10;
+        } else if (evt === 6) {
+          writeLine('\nTu trouves un coffre mystérieux. Veux-tu l\'ouvrir ?');
+          writeLine('1 - Oui / 2 - Non');
+          writePrompt('Votre choix : ');
+          if ((await readLine([{ label: '1 - Oui', value: '1' }, { label: '2 - Non', value: '2' }])).trim() === '1') {
+            if (rnd(1, 3) === 1) {
+              pieces += 20;
+              writeLine('Jackpot ! Tu viens de gagner 20 pièces !', 'c-green');
+            } else {
+              vie -= 15;
+              writeLine('Le coffre était piégé, tu perds 15 PV !', 'c-red');
+            }
+          } else {
+            writeLine('Tu préfères ne pas tenter le diable.');
+          }
+        } else if (evt === 7) {
+          writeLine('\nPetite pause. Il ne se passe rien... Tu souffles un peu.');
+        } else if (evt === 8) {
+          writeLine('\nTu découvres un raccourci !');
+          writeLine('1 - Le prendre (sauter une étape) / 2 - Continuer normalement');
+          writePrompt('Votre choix : ');
+          if ((await readLine([{ label: '1 - Raccourci', value: '1' }, { label: '2 - Normal', value: '2' }])).trim() === '1') {
+            writeLine('Tu as pris un risque et gagné une étape !', 'c-cyan');
+            etape++;
+          } else {
+            writeLine('Tu restes sur le chemin principal.');
+          }
+        }
+
+        if (vie > 0) {
+          if (nourriture > 0) {
+            nourriture--;
+            writeLine('Tu manges une ration de survie.');
+          } else {
+            writeLine('Famine ! Tu n\'as plus rien à manger. Tu perds 10 PV pour trouver 5 nourritures.', 'c-red');
+            vie -= 10;
+            nourriture = 5;
+          }
+
+          if (potions > 0 && vie <= 75) {
+            writePrompt('Tu as une potion. L\'utiliser pour +25 PV ? (1-Oui / 2-Non) : ');
+            if ((await readLine([{ label: '1 - Oui', value: '1' }, { label: '2 - Non', value: '2' }])).trim() === '1') {
+              potions--;
+              vie = Math.min(100, vie + 25);
+              writeLine(`Potion consommée ! Vie actuelle : ${vie}`, 'c-green');
+            }
+          }
+          etape++;
+        }
+      }
+
+      writeLine('');
+      if (vie > 0) {
+        writeLine('==================================================', 'c-green');
+        writeLine('     VICTOIRE ! TU AS REJOINT LE REFUGE EN VIE !  ', 'c-green');
+        writeLine('==================================================', 'c-green');
+        const gainQuete = vie + (pieces * 2);
+        writeLine(`Bonus de survie : +${gainQuete} points !`);
+        scoreCumule += gainQuete;
+      } else {
+        writeLine('GAME OVER ! Vos forces vous ont abandonné avant le refuge.', 'c-red');
+      }
+
+      writeLine('\nAppuyez sur Entrée ou Continuer pour revenir à la borne...');
+      await waitForKey();
+    }
+
+    async function jeu5MachineASous() {
+      clearConsole();
+      writeLine('+---------------------------------------------+', 'c-yellow');
+      writeLine('|               MACHINE A SOUS                |', 'c-yellow');
+      writeLine('+---------------------------------------------+', 'c-yellow');
+
+      let pieces = 100;
+      let continuer = true;
+
+      while (continuer && pieces > 0) {
+        writeLine(`\nVous avez actuellement ${pieces} pièces.`);
+        writePrompt('Combien voulez-vous miser ? ');
+        const saisieMise = await readLine([
+          { label: '10', value: '10' },
+          { label: '25', value: '25' },
+          { label: '50', value: '50' },
+          { label: 'Tout', value: String(pieces) }
+        ]);
+        const mise = Number.parseInt(saisieMise, 10);
+
+        if (!Number.isInteger(mise) || String(mise) !== saisieMise.trim() || mise <= 0 || mise > pieces) {
+          writeLine(`Mise invalide ! Vous devez miser entre 1 et ${pieces} pièces.`, 'c-red');
+          continue;
+        }
+
+        const s1 = rnd(1, 10), s2 = rnd(1, 10), s3 = rnd(1, 10);
+        writeLine(`\n[${s1}] [${s2}] [${s3}]`, 'c-yellow');
+
+        if (s1 === s2 && s2 === s3) {
+          const gain = mise * 4;
+          pieces += gain;
+          writeLine('INCROYABLE ! Trois symboles identiques !', 'c-green');
+          writeLine(`Vous gagnez ${gain} pièces !`, 'c-green');
+        } else if (s1 === s2 || s1 === s3 || s2 === s3) {
+          const gain = mise * 2;
+          pieces += gain;
+          writeLine('Deux symboles identiques !', 'c-cyan');
+          writeLine(`Vous gagnez ${gain} pièces.`, 'c-cyan');
+        } else {
+          pieces -= mise;
+          writeLine('Perdu ! Aucun alignement.', 'c-red');
+          writeLine(`Vous perdez ${mise} pièces.`, 'c-red');
+        }
+
+        if (pieces > 0) {
+          writePrompt('\nVoulez-vous rejouer ? (1 - Oui / 0 - Non) : ');
+          const rejouer = (await readLine([{ label: '1 - Oui', value: '1' }, { label: '0 - Non', value: '0' }])).trim();
+          if (rejouer === '0') continuer = false;
+        } else {
+          writeLine('\nVous êtes fauché ! Plus aucune pièce disponible.', 'c-red');
+        }
+      }
+
+      const scorePartie = Math.floor(pieces / 2);
+      writeLine(`\nPartie terminée. Vos ${pieces} pièces sont converties en ${scorePartie} points.`, 'c-green');
+      scoreCumule += scorePartie;
+      writeLine('\nAppuyez sur Entrée ou Continuer pour revenir à la borne...');
+      await waitForKey();
+    }
+
+    async function runConsole() {
+      writeLine('Bonjour et bienvenue dans notre console de jeux !', 'c-cyan');
+      writePrompt('Quel est ton pseudo pour cette partie ? ');
+      const saisiePseudo = (await readLine([])).trim();
+      if (saisiePseudo) pseudoJoueur = saisiePseudo;
+
+      let choix = '';
+      while (choix !== '0') {
+        clearConsole();
+        writeLine(`****** ${pseudoJoueur}, à quel jeu souhaites-tu jouer ? ******`, 'c-yellow');
+        writeLine('========================================', 'c-yellow');
+        writeLine('            ARCADE BTS SIO              ', 'c-yellow');
+        writeLine('========================================', 'c-yellow');
+        writeLine('1 - Le nombre mystère');
+        writeLine('2 - La station spatiale');
+        writeLine('3 - Le tir de précision');
+        writeLine('4 - La quête (Survival Quest)');
+        writeLine('5 - La machine à sous');
+        writeLine('6 - Ton score');
+        writeLine('0 - Quitter');
+        writeLine('----------------------------------------');
+        writePrompt('Ton choix : ');
+
+        choix = (await readLine([
+          { label: '1 - Nombre mystère', value: '1' },
+          { label: '2 - Station spatiale', value: '2' },
+          { label: '3 - Tir', value: '3' },
+          { label: '4 - La quête', value: '4' },
+          { label: '5 - Machine à sous', value: '5' },
+          { label: '6 - Score', value: '6' },
+          { label: '0 - Quitter', value: '0' }
+        ])).trim();
+
+        if (choix === '1') await jeu1NombreMystere();
+        else if (choix === '2') await jeu2StationSpatiale();
+        else if (choix === '3') await jeu3TirDePrecision();
+        else if (choix === '4') await jeu4LaQuete();
+        else if (choix === '5') await jeu5MachineASous();
+        else if (choix === '6') {
+          clearConsole();
+          writeLine('=== TABLEAU DES SCORES ===', 'c-cyan');
+          writeLine(`Joueur : ${pseudoJoueur}`, 'c-cyan');
+          writeLine(`Score total cumulé : ${scoreCumule} points !`, 'c-cyan');
+          writeLine('\nAppuyez sur Entrée ou Continuer pour revenir au menu...');
+          await waitForKey();
+        } else if (choix === '0') {
+          writeLine(`\nMerci d'avoir joué sur l'Arcade BTS SIO, à bientôt ${pseudoJoueur} !`);
+          writePrompt('Appuyez sur Entrée ou Continuer pour relancer la borne...');
+          await waitForKey();
+          choix = '';
+        } else {
+          writeLine('Choix incorrect, retour au menu...', 'c-red');
+          await waitForKey();
+        }
+      }
+    }
+
+    runConsole();
+  </script>
+</body>
+</html>

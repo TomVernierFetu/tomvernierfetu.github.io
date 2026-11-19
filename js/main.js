@@ -29,17 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Copie rapide de l'adresse email sur tous les boutons dédiés
   const copyButtons = document.querySelectorAll('[data-copy-email]');
   copyButtons.forEach((btn) => {
+    const originalText = btn.textContent;
+    let resetTimer = null;
+
     btn.addEventListener('click', async () => {
       const email = btn.getAttribute('data-copy-email');
       if (!email) return;
 
       try {
         await navigator.clipboard.writeText(email);
-        const originalText = btn.textContent;
         btn.textContent = 'Copié ✓';
         btn.classList.add('is-copied');
 
-        setTimeout(() => {
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
           btn.textContent = originalText;
           btn.classList.remove('is-copied');
         }, 2000);
@@ -55,7 +58,33 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetY = window.scrollY;
   let currentY = window.scrollY;
   let isAnimating = false;
+  let lockScrollSpy = false;
   let lastFrameTime = 0;
+
+  const trackedSections = Array.from(document.querySelectorAll('main section[id]'));
+
+  function syncUrlWithSection() {
+    if (lockScrollSpy || !trackedSections.length) return;
+
+    let activeHash = '';
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 24;
+
+    if (atBottom) {
+      activeHash = `#${trackedSections[trackedSections.length - 1].id}`;
+    } else if (window.scrollY >= 160) {
+      const triggerLine = window.innerHeight * 0.32;
+      for (const sec of trackedSections) {
+        if (sec.getBoundingClientRect().top <= triggerLine) {
+          activeHash = `#${sec.id}`;
+        }
+      }
+    }
+
+    if (window.location.hash !== activeHash) {
+      const nextUrl = activeHash || (window.location.pathname + window.location.search);
+      history.replaceState(null, '', nextUrl);
+    }
+  }
 
   function getMaxScroll() {
     return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -76,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
       currentY = targetY;
       window.scrollTo(0, currentY);
       isAnimating = false;
+      lockScrollSpy = false;
       lastFrameTime = 0;
+      syncUrlWithSection();
       return;
     }
 
@@ -95,10 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const previewModal = document.getElementById('preview-modal');
+
   // Lissage de la molette (compatible Chrome, Edge et Firefox)
   window.addEventListener('wheel', (event) => {
-    if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    if (event.ctrlKey || (previewModal && !previewModal.hidden) || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
     event.preventDefault();
+    lockScrollSpy = false;
 
     let delta = event.deltaY;
     if (event.deltaMode === 1) delta *= 36;
@@ -118,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener(evt, () => {
       if (isAnimating) {
         isAnimating = false;
+        lockScrollSpy = false;
         lastFrameTime = 0;
         currentY = window.scrollY;
         targetY = window.scrollY;
@@ -130,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentY = window.scrollY;
       targetY = window.scrollY;
     }
+    syncUrlWithSection();
   }, { passive: true });
 
   // Glissement fluide vers les sections sur clic d'un lien d'ancrage (#section)
@@ -145,11 +181,79 @@ document.addEventListener('DOMContentLoaded', () => {
       const offset = 32;
       const destination = targetEl.getBoundingClientRect().top + window.scrollY - offset;
 
+      lockScrollSpy = true;
       currentY = window.scrollY;
       targetY = clampScroll(destination);
       startAnimation();
 
-      history.pushState(null, '', targetId);
+      history.replaceState(null, '', targetId);
     });
+  });
+
+  // Mise à l'échelle des aperçus miniatures dans les cartes projets
+  function scaleProjectPreviews() {
+    document.querySelectorAll('.preview-viewport').forEach((viewport) => {
+      const iframe = viewport.querySelector('iframe');
+      if (!iframe) return;
+      const scale = viewport.clientWidth / 1200;
+      iframe.style.transform = `scale(${scale})`;
+    });
+  }
+
+  scaleProjectPreviews();
+  window.addEventListener('load', scaleProjectPreviews);
+  window.addEventListener('resize', scaleProjectPreviews);
+
+  // Modale d'aperçu interactif des sites hébergés
+  const modalIframe = document.getElementById('preview-modal-iframe');
+  const modalTitle = document.getElementById('preview-modal-title');
+  const modalExternal = document.getElementById('preview-modal-external');
+
+  function openPreviewModal(url, title, embedOnly) {
+    if (!previewModal || !modalIframe) return;
+    modalIframe.src = url;
+    if (modalTitle) modalTitle.textContent = title || 'Aperçu en direct';
+    if (modalExternal) {
+      modalExternal.href = url;
+      modalExternal.hidden = Boolean(embedOnly);
+    }
+    previewModal.hidden = false;
+    previewModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePreviewModal() {
+    if (!previewModal || !modalIframe || previewModal.hidden) return;
+    previewModal.hidden = true;
+    previewModal.setAttribute('aria-hidden', 'true');
+    modalIframe.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-preview-url]').forEach((trigger) => {
+    const launchPreview = () => {
+      const url = trigger.getAttribute('data-preview-url');
+      const title = trigger.getAttribute('data-preview-title');
+      const embedOnly = trigger.getAttribute('data-preview-embed-only') === 'true';
+      if (url) openPreviewModal(url, title, embedOnly);
+    };
+
+    trigger.addEventListener('click', launchPreview);
+    if (trigger.tagName !== 'BUTTON' && trigger.tagName !== 'A') {
+      trigger.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          launchPreview();
+        }
+      });
+    }
+  });
+
+  document.querySelectorAll('[data-close-preview]').forEach((closer) => {
+    closer.addEventListener('click', closePreviewModal);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closePreviewModal();
   });
 });

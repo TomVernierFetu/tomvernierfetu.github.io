@@ -4,21 +4,21 @@ Site portfolio personnel hébergé sur **GitHub Pages** : [tomvernierfetu.github
 
 ---
 
-### 🚀 Présentation
-- **Profil :** Apprenti Développeur Web & Logiciel (Autodidacte)
-- **Objectif :** Recherche d'une alternance en informatique (Rythme ENI : 6 sem. entreprise / 2 sem. école)
-- **Localisation :** Angers (49) & agglomération
+## 🎯 Profil et Objectif
+
+- **Profil :** Admis à l'ENI École Informatique (Bac Pro CIEL Mention Bien, début de BTS SIO SLAM)
+- **Objectif :** Recherche d'alternance Bac+2 RNCP niveau 5 (rythme 6 sem. entreprise / 2 sem. cours) en filière **TSSR (Technicien Supérieur Systèmes et Réseaux)** ou **Développeur Full-Stack / Web**
+- **Localisation :** Angers (49) et première couronne (réseau Irigo)
 
 ---
 
-### 🛠️ Caractéristiques techniques
-- **HTML5 sémantique :** Structure claire et accessible (`header`, `main`, `section`, `article`, `footer`).
-- **CSS3 moderne :**
-  - Thème Clair / Sombre avec variables CSS natives (`--bg-primary`, `--accent-primary`, etc.).
-  - Transition douce et respect du choix du visiteur (`localStorage` + `prefers-color-scheme`).
-  - Grilles CSS et Flexbox fluides et 100% adaptatives (Mobile, Tablette, Desktop).
-  - Aucune dépendance externe ni framework lourd (Tailwind/Bootstrap), temps de chargement instantané.
+## 🛠️ Fonctionnalités et architecture
+
+- **HTML5 sémantique et SEO :** structure claire (`header`, `nav`, `main`, `section`, `footer`), `404.html` personnalisée, pages légales (`page/mentions-legales.html`, `page/confidentialite.html`), `robots.txt`, `sitemap.xml`, balises OpenGraph et JSON-LD Schema.org.
+- **CSS3 moderne sans framework :**
+  - Thème Clair / Sombre avec variables CSS et mémorisation `localStorage`.
+  - Grille responsive (2 colonnes bureau, 1 colonne mobile) et style dédié pour l'impression (`@media print`).
 - **JavaScript Vanilla :**
-  - Gestion dynamique du thème.
-  - Menu burger responsive.
-  - Copie instantanée de l'email avec notification toast.
+  - Défilement fluide (smooth scroll sur molette et liens d'ancrage) avec mise à jour automatique de l'URL au scroll.
+  - Copie rapide de l'adresse email avec confirmation visuelle.
+  - Modale d'aperçu interactif pour les sites hébergés sur GitHub Pages et les démos en RAM (console C# et bac à sable SQLite WebAssembly en lecture seule).
