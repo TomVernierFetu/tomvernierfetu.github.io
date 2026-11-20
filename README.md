@@ -6,9 +6,9 @@ Site portfolio personnel hébergé sur **GitHub Pages** : [tomvernierfetu.github
 
 ## 🎯 Profil et Objectif
 
-- **Profil :** Admis à l'ENI École Informatique (Bac Pro CIEL Mention Bien, début de BTS SIO SLAM)
-- **Objectif :** Recherche d'alternance Bac+2 RNCP niveau 5 (rythme 6 sem. entreprise / 2 sem. cours) en filière **TSSR (Technicien Supérieur Systèmes et Réseaux)** ou **Développeur Full-Stack / Web**
-- **Localisation :** Angers (49) et première couronne (réseau Irigo)
+- **Profil :** Admis à l'ENI École Informatique (Campus de Nantes, rentrée janvier 2027 · Bac Pro CIEL Mention Bien, 3 mois en BTS SIO tronc commun)
+- **Objectif :** Recherche d'alternance Bac+2 RNCP niveau 5 (contrat d'apprentissage, rythme 6 sem. entreprise / 2 sem. cours) en filière **TSSR (Technicien Supérieur Systèmes et Réseaux)** ou **Développeur Full-Stack / Web**
+- **Localisation :** Angers (49) et agglomération (réseau Irigo)
 
 ---
 

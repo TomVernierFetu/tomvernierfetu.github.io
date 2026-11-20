@@ -325,6 +325,8 @@ body {
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.65;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .prose strong {
@@ -760,6 +762,8 @@ body {
   color: var(--text-muted);
   line-height: 1.55;
   margin-top: 0.25rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* Stack technique */
@@ -1023,6 +1027,12 @@ body {
 
   .footer-grid {
     gap: 1.5rem;
+  }
+
+  /* Retour alignement gauche sur mobile étroit pour éviter les trous entre mots */
+  .prose, .timeline-desc {
+    text-align: left;
+    hyphens: manual;
   }
 
   .timeline-date {
